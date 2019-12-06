@@ -146,7 +146,7 @@ python-pentabarf-xml==0.19
 python3-xlib==0.15
 PyTweening==1.0.3
 pytz==2019.2
-pyxdg==0.25
+pyxdg==0.26
 PyYAML==5.1.2
 qrcode==6.1
 redis==3.3.11
