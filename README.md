@@ -51,6 +51,16 @@ FRONTEND :
 BACKEND : 
   - (optional) Add CLI for the website so that user may add his daily progress in the terminal itself.
  
+## Installation
+
+BACKEND:
+  - clone the backend folder
+  - Install **django and django-rest-framework** using pip
+  
+FRONTEND:
+ - clone the frontend folder
+ - In the root directory do **npm install or yarn install**
+ 
 ## Contribution Guidelines
 
 Please raise a feature request or issue before sending PR for the same.
