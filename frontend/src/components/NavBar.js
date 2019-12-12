@@ -39,6 +39,7 @@ class NavBar extends React.Component{
                 <Left>
                     <StyledLink to="/"><LinkText color={color}>Home</LinkText></StyledLink>
                     <StyledLink to="/about"><LinkText color={color}>About</LinkText></StyledLink>
+                    <StyledLink to="/hello"><LinkText color={color}>Dropdown</LinkText></StyledLink>
                 </Left>
                 <Right>
                     <StyledLink to="/users"><LinkText color={color}>Users</LinkText></StyledLink>
