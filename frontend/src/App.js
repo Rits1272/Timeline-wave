@@ -43,7 +43,6 @@ function Home() {
         <h1>Welcome to Timeline-wave</h1>
       </header>
     </div>
-
   );
 }
 
@@ -56,21 +55,12 @@ function Users() {
 }
 
 function Hello() {
-  return(
-    <div class="dropdown">
-      <button class="dropbtn">Dropdown</button>
-      <div class="dropdown-content">
-        <a href="login-page/index.html">Login</a>
-        <a href="login-page/register.html">Register</a>
-        <a href="login-page/forgot.html">Forgot</a>
-      </div>
-    </div>
-  );
+  return <h2>Login and Register Option</h2>;
 }
 
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+// function myFunction() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
 //   document.getElementById("myFunction()").classList.toggle("show");
 //
 //
