@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      theme:dark      
+      theme:dark
     }
   }
   changeColorMode=()=>{
@@ -27,6 +27,7 @@ class App extends React.Component {
           <NavBar changeMode={this.changeColorMode}/>
             <Route path="/about"><About /></Route>
             <Route path="/users"><Users /></Route>
+            <Route path="/hello"><Hello /></Route>
             <Route exact path="/"><Home /></Route>
           </Router>
       </ThemeContext.Provider>
@@ -42,7 +43,6 @@ function Home() {
         <h1>Welcome to Timeline-wave</h1>
       </header>
     </div>
-
   );
 }
 
@@ -53,6 +53,32 @@ function About() {
 function Users() {
   return <h2>Users</h2>;
 }
+
+function Hello() {
+  return <h2>Login and Register Option</h2>;
+}
+
+// function myFunction() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
+//   document.getElementById("myFunction()").classList.toggle("show");
+//
+//
+// window.onclick = function(event) {
+//   if (!event.target.matches('.dropbtn')) {
+//     var dropdowns = document.getElementsByClassName("dropdown-content");
+//     var i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       var openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('show')) {
+//         openDropdown.classList.remove('show');
+//       }
+//     }
+//   }
+// }
+//   return <h2>Hello</h2>;
+// }
+
 
 export default App;
 export {ThemeContext}

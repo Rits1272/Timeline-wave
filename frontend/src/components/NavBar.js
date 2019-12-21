@@ -39,6 +39,15 @@ class NavBar extends React.Component{
                 <Left>
                     <StyledLink to="/"><LinkText color={color}>Home</LinkText></StyledLink>
                     <StyledLink to="/about"><LinkText color={color}>About</LinkText></StyledLink>
+                    <StyledLink to="/hello"><LinkText color={color}>
+                    <div class="dropdown">Dropdown
+                      <div class="dropdown-content">
+                        <a href="login-page/index.html">Login</a>
+                        <a href="login-page/register.html">Register</a>
+                        <a href="login-page/forgot.html">Forgot</a>
+                      </div>
+                    </div>
+                  </LinkText></StyledLink>
                 </Left>
                 <Right>
                     <StyledLink to="/users"><LinkText color={color}>Users</LinkText></StyledLink>
@@ -50,6 +59,12 @@ class NavBar extends React.Component{
         )
     }
 }
+
+function make(e) {
+    console.log('x')
+    // e.preventDefault();   // if you want to not go to href url uncoment this
+}
+
 const NavWrapper= (props)=>(
     <ThemeContext.Consumer>
         {value=><NavBar theme={value} changeMode={props.changeMode}></NavBar>}
