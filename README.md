@@ -70,7 +70,7 @@ Follow the below guidelines for proper coding practices:
 - Always [create a new branch](https://confluence.atlassian.com/bitbucket/branching-a-repository-223217999.html) for your changes and make PR from it ONLY.
 - Write neat code with proper comments.
 - Write descriptive commit messages. Please [read this](https://github.com/erlang/otp/wiki/writing-good-commit-messages) for more information.
-- Write detailed PR messages and include `fixes #ISSUE_NUMBER` it if closes an issue, otherwise use `concerns #ISSUE_NUMBER` to tag the related issues. Please [refer here](https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/) for more PR guidelines.
+- Write detailed PR messages and include `fixes #ISSUE_NUMBER` if it closes an issue, otherwise use `concerns #ISSUE_NUMBER` to tag the related issues. Please [refer here](https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/) for more PR guidelines.
 - It is recommended to have a single commit for a task.
 - Use [DRY principles](https://thealphadollar.github.io/learning/2019/05/13/go-dry.html) to create maintainable code.
 
@@ -78,6 +78,6 @@ Follow the below guidelines for proper coding practices:
 
 All contributors / users are requested to join [Slack Workspace](https://join.slack.com/t/timelinewave/shared_invite/enQtODQ2Njg1OTU1OTUzLWJiNmJmNjAzYmI0OGI2N2RhZWFhMTliYzI1NmZmN2U5ZTQ3M2YyZGJjYzc0MTdjZTgyNTBlMGU4NGQ5ODYxOWY) for further discussion on ideas, PRs and issues.
 
-For issues please raise a ticket in the issues tab in the [Timeline-Wave github repository](https://www.github.com/rits1272/Timeline-wave).
+For issues please raise a ticket in the issues tab in the [Timeline-Wave github repository](https://www.github.com/rits1272/Timeline-wave/issues).
 
 Mentor for the project: [Ritik Jain](https://www.github.com/rits1272/)
