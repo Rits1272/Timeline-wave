@@ -1,59 +1,58 @@
 import React from 'react';
-import styled from 'styled-components';
-import {
-    Link
-  } from "react-router-dom";
-import {ThemeContext} from '../App';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
-const Cointainer=styled.div`
-    height:10vh;
-    padding-left:25px;
-    padding-right:25px;
-    background:${props=>props.backgroundColor || "black"};
-    padding-top:20px;
-`
-const Left=styled.span`
-`
-const Right =styled.span`
-    float:right;
-`
-const StyledLink=styled(Link)`
-    text-decoration:none;
-`
-const LinkText=styled.h3`
-    margin-left:1.0em;
-    display:inline-block;
-    margin-top:0;
-    margin-bottom:0;
-    color:${props=>props.color || "white"};
-`
-class NavBar extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-    render(){
-        let {backgroundColor,color,name}=this.props.theme;
-        return (
-            <Cointainer backgroundColor={backgroundColor}>
-                <Left>
-                    <StyledLink to="/"><LinkText color={color}>Home</LinkText></StyledLink>
-                    <StyledLink to="/about"><LinkText color={color}>About</LinkText></StyledLink>
-                </Left>
-                <Right>
-                    <StyledLink to="/users"><LinkText color={color}>Users</LinkText></StyledLink>
-                    <span onClick={this.props.changeMode}>
-                        <LinkText color={color}>{name==="dark"?"Light":"Dark"}</LinkText>
-                    </span>
-                </Right>
-            </Cointainer>
-        )
-    }
+export default function MenuAppBar() {
+  const classes = useStyles();
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleChange = event => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Timeline-wave
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
-const NavWrapper= (props)=>(
-    <ThemeContext.Consumer>
-        {value=><NavBar theme={value} changeMode={props.changeMode}></NavBar>}
-    </ThemeContext.Consumer>
-);
-
-export default NavWrapper;
