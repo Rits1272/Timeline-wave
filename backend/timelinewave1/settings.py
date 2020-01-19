@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'myapi',
     
+    'corsheaders'
 
 ]
 
@@ -66,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # django-cors-headers
+    'django.middleware.common.CommonMiddleware', # django-cors-headers
 ]
 
 ROOT_URLCONF = 'timelinewave1.urls'
@@ -141,3 +144,7 @@ STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
 DISABLE_COLLECTSTATIC=1
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]
