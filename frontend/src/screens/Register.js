@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Navbar from '../components/NavBar';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ export default function Register(){
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
     const [cpassword, setCPassword] = useState();
-
+                
     const submitRequest = (event) => {
       event.preventDefault();
       Axios.post('http://127.0.0.1:8000/api/v1/rest-auth/registration/', {
@@ -38,7 +38,12 @@ export default function Register(){
         password2 : cpassword,
       })
       .then(res => console.log(res))
+      .then(navigateLogin())
       .catch(err => console.log(err));
+    }
+
+    const navigateLogin = () => {
+      return(<Redirect to='/login'/>)
     }
 
     return(

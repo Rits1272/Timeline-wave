@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics
-
-from . import models
-from . import serializers
+from .serializers import UserSerializer
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 
 class UserListView (generics.ListAPIView):
-    queryset=models.CustomUser.objects.all()
-    serializer_class=serializers.UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
