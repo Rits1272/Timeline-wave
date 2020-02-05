@@ -32,20 +32,19 @@ export default function Login(){
 
     const SubmitRequest = async (event) => {
        event.preventDefault();
-        let token = '';
+       let tok = '';
         await Axios.post('http://127.0.0.1:8000/api/v1/rest-auth/login/',{
             username : username,
             email : email,
             password : password,
         })
         .then(response => {
-            token = response.data['key'];
+            tok = response.data['key'];
         })
         .catch(err => console.log(err));
 
-        if(token !== ''){
-            console.log(token)
-            setToken(token);
+        if(tok !== ''){
+            setToken(tok);
         }
         else{
             setError('Invalid Credentials!');

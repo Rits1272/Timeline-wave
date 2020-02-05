@@ -26,8 +26,7 @@ SECRET_KEY = '&yg7yejo7ej&8p2%f64p&5)_slile(ms)ldz#e-quhf40u18^9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sushweb3.herokuapp.com','localhost']
-
+ALLOWED_HOSTS = ['sushweb3.herokuapp.com','localhost', '127.0.0.1:8000']
 
 # Application definition
 
@@ -47,10 +46,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
-    
     'corsheaders',
     'progressApi'
-
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -143,6 +140,10 @@ django_heroku.settings(locals())
 
 DISABLE_COLLECTSTATIC=1
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', 
+    ],
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
