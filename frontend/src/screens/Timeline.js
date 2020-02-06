@@ -40,44 +40,35 @@ export default function Timeline(props) {
       .catch(err => console.log(err));
   }, []);
 
-  const makeTimeline = () => {
-    return (
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-        contentArrowStyle={{ borderRight: "7px solid  rgb(200, 150, 243)" }}
-        date="2011 - present"
-        iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-      >
-        <h3 className="vertical-timeline-element-title">Creative Director</h3>
-        <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-        <p>
-          Creative Direction, User Experience, Visual Design, Project
-          Management, Team Leading
-        </p>
-      </VerticalTimelineElement>
-    );
-  };
+  const generateRandomNum = () => {
+    return Math.floor(Math.random() * 255 + 1);
+  }
+
+  const getRandomColor = () => {
+    return `rgb(${generateRandomNum()},${generateRandomNum()},${generateRandomNum()})`
+  }
+
+
   if (data !== "") {
     return (
       <div>
         <Navbar />
         <AddTimelineData />
-        <Container style={{ backgroundColor: "#dddddd", marginTop: "3%" }}>
+        <Container style={{ backgroundColor: '#8A2BE2', marginTop: "3%" }}>
           <VerticalTimeline>
             {data.map(data => (
               <VerticalTimelineElement
                 key={data.id}
                 className="vertical-timeline-element--work"
                 contentStyle={{
-                  background: "rgb(33, 150, 243)",
+                  background: getRandomColor(),
                   color: "#fff"
                 }}
                 contentArrowStyle={{
                   borderRight: "7px solid  rgb(200, 150, 243)"
                 }}
                 date={data.date}
-                iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
+                iconStyle={{ background: getRandomColor() }}
               >
                 <h3 className="vertical-timeline-element-title">
                   {data.title}
