@@ -37,8 +37,7 @@ export default function Register(){
         password1 : password,
         password2 : cpassword,
       })
-      .then(res => console.log(res))
-      .then(navigateLogin())
+      .then(res => {console.log(res); navigateLogin()})
       .catch(err => console.log(err));
     }
 
@@ -49,6 +48,7 @@ export default function Register(){
     return(
       <div>
         <Navbar />
+        {console.log(username)}
        <Container component="main" maxWidth='xs'>
             <Paper className={classes.paper}>
             <Typography component='h1' variant="h4" style={{marginBottom : 20}}>

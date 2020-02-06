@@ -67,6 +67,7 @@ export default function Timeline(props) {
           <VerticalTimeline>
             {data.map(data => (
               <VerticalTimelineElement
+                key={data.id}
                 className="vertical-timeline-element--work"
                 contentStyle={{
                   background: "rgb(33, 150, 243)",
@@ -108,16 +109,6 @@ function getModalStyle() {
   };
 }
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: "absolute",
-    width: 450,
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[3],
-    padding: theme.spacing(2, 4, 3)
-  }
-}));
 
 export function AddTimelineData() {
   const [open, setOpen] = React.useState(false);
@@ -131,14 +122,23 @@ export function AddTimelineData() {
     setOpen(false);
   };
 
-  const addData = () => {
-    Axios.post("http://127.0.0.1:8000/progressApi/", {
-      Authorization: `Token ${token}`,
-      title: title,
-      description: desc,
-      user: "ritik"
-    });
-  };
+  const addData = async () => {   
+    await fetch('http://127.0.0.1:8000/progressApi/',
+    {
+      method : 'POST',
+      body : JSON.stringify({
+        title : title,
+        description : desc,
+        user : "test"
+      }),
+      headers:{
+        'Authorization' : `Token ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
 
   return (
     <div>

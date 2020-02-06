@@ -7,10 +7,24 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.generics import ListCreateAPIView
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 class ProgressView(ListCreateAPIView):
-    queryset = Progress.objects.all()
     serializer_class = ProgressSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        title = request.data.get('title')
+        description = request.data.get('description')
+        username = request.data.get('user')
+        user_obj = User.objects.get(username=username)
+        progress = Progress(title=title, description=description, user=user_obj)
+        progress.save()
+        return HttpResponse(progress)
+
+    def get_queryset(self):
+        print(self.request.user)
+        return Progress.objects.filter(user=self.request.user)
