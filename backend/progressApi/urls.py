@@ -9,6 +9,6 @@ urlpatterns = [
    
     re_path(r'', include(router.urls)),
     re_path(r'^api-auth/', include('rest_framework.urls')),
-    path('progressApi/', ProgressView.as_view(), name='progressApi'),
+    path('progressApi/<str:user>', ProgressView.as_view(), name='progressApi'),
 
 ]

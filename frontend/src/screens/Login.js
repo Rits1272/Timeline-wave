@@ -45,6 +45,8 @@ export default function Login(){
 
         if(tok !== ''){
             setToken(tok);
+            localStorage.setItem('token', tok);
+            localStorage.setItem('username', username);
         }
         else{
             setError('Invalid Credentials!');

@@ -5,28 +5,32 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import Navbar from "../components/NavBar";
-import Axios from "axios";
 import Container from "@material-ui/core/Container";
 import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
+import Grid from '@material-ui/core/Grid'; 
+import { Link } from 'react-router-dom';
 
-var token = "";
+
+var token = localStorage.getItem("token");
+var user = localStorage.getItem("username");
 
 export default function Timeline(props) {
-  token = props.location.state.token;
   let headers = { "Content-Type": "application/json" };
   headers["Authorization"] = `Token ${token}`;
   const [data, setData] = useState("");
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/progressApi/", {
-        headers,
-        method: "GET"
-      });
+      const response = await fetch(
+        `http://127.0.0.1:8000/progressApi/${user}`,
+        {
+          headers,
+          method: "GET"
+        }
+      );
       const data = await response.json();
       return data;
     } catch (err) {
@@ -42,19 +46,23 @@ export default function Timeline(props) {
 
   const generateRandomNum = () => {
     return Math.floor(Math.random() * 255 + 1);
-  }
+  };
 
   const getRandomColor = () => {
-    return `rgb(${generateRandomNum()},${generateRandomNum()},${generateRandomNum()})`
-  }
+    return `rgb(${generateRandomNum()},${generateRandomNum()},${generateRandomNum()})`;
+  };
 
 
-  if (data !== "") {
+  if (data !== "" && token !== "") {
     return (
       <div>
         <Navbar />
         <AddTimelineData />
-        <Container style={{ backgroundColor: '#8A2BE2', marginTop: "3%" }}>
+        <Button  varaint="contained" color="default">
+          <Link to={{pathname:'/search_people'}}>Search Friends</Link>
+        </Button>
+
+        <Container style={{ backgroundColor: "#8A2BE2", marginTop: "3%" }}>
           <VerticalTimeline>
             {data.map(data => (
               <VerticalTimelineElement
@@ -79,10 +87,19 @@ export default function Timeline(props) {
             ))}
           </VerticalTimeline>
         </Container>
+        <div style={{height:100}}></div>
       </div>
     );
   }
-  return <Navbar />;
+  return (
+    <div>
+      <Navbar />
+      <Grid container direction="row" alignItems="center">
+        <Link to='/login'>You are not logged in! Log In here</Link>
+      </Grid>
+      
+    </div>
+  );
 }
 
 function rand() {
@@ -100,7 +117,6 @@ function getModalStyle() {
   };
 }
 
-
 export function AddTimelineData() {
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState();
@@ -113,23 +129,22 @@ export function AddTimelineData() {
     setOpen(false);
   };
 
-  const addData = async () => {   
-    await fetch('http://127.0.0.1:8000/progressApi/',
-    {
-      method : 'POST',
-      body : JSON.stringify({
-        title : title,
-        description : desc,
-        user : "test"
+  const addData = async () => {
+    await fetch("http://127.0.0.1:8000/progressApi/", {
+      method: "POST",
+      body: JSON.stringify({
+        title: title,
+        description: desc,
+        user: user
       }),
-      headers:{
-        'Authorization' : `Token ${token}`,
-        'Content-Type': 'application/json'
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json"
       }
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-  }
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
 
   return (
     <div>

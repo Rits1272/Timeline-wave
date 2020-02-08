@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 
 class ProgressView(ListCreateAPIView):
     serializer_class = ProgressSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def post(self, request, *args, **kwargs):
         title = request.data.get('title')
@@ -26,5 +26,6 @@ class ProgressView(ListCreateAPIView):
         return HttpResponse(progress)
 
     def get_queryset(self):
-        print(self.request.user)
-        return Progress.objects.filter(user=self.request.user)
+        user = self.kwargs['user']
+        userObj = User.objects.get(username=user)
+        return Progress.objects.filter(user=userObj)
